@@ -15,3 +15,7 @@
     font-weight: 600;
 }
 
+.box {
+    height: 75px;
+    border: solid black 3px;
+}
