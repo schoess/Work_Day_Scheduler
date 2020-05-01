@@ -1,13 +1,12 @@
+/*
+=============================
+Body Styles
+=============================
+*/
+
 #mainTitle {
     text-align: center;
     margin: 40px;
-}
-
-#liveDate {
-    margin-bottom: 50px;
-    margin-top: 30px;
-    font-weight: 800;
-
 }
 
 .col-6 {
@@ -19,3 +18,34 @@
     height: 75px;
     border: solid black 3px;
 }
+
+/*
+=============================
+Typography
+=============================
+*/
+
+#liveDate {
+    margin-bottom: 50px;
+    margin-top: 30px;
+    font-weight: 800;
+}
+
+/*
+=============================
+Date/Time Color Changes
+=============================
+*/
+
+#redBox {
+    background-color: rgba(255, 0, 0, 0.5);
+}
+
+#grayBox {
+    background-color: rgba(85, 85, 85, 0.5);
+}
+
+#greenBox {
+    background-color: rgba(0, 255, 0, 0.5);
+}
+
