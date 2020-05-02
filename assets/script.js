@@ -16,13 +16,14 @@
         document.getElementById("liveDate").append(dateDisplay);
 
         var now = moment();
-        var time = now.hour()
+        var time = now.hour();
         if (time > 17 || time < 9) {
             inputs.forEach(function(input) {
-                input.setAttribute("id", "grayBox")})
+                input.setAttribute("id", "grayBox")
+            });
         } else if (time = 9) {
-            inputs[0].setAttribute("id", "greenBox")
-            inputs.slice(1).setAttribute("id", "redBox")
+            inputs[0].setAttribute("id", "greenBox");
+            inputs.slice(1).setAttribute("id", "redBox");
         } else if (time = 10) {
             inputs[0].setAttribute("id", "grayBox")
             inputs[1].setAttribute("id", "greenBox")
@@ -74,7 +75,7 @@
             var selectors = document.querySelectorAll(`[data-time="${btnDT}"]`);
             var taskInput = selectors[0].value;
 
-            setStorage(taskInput, btnDT)
+            setStorage(taskInput, btnDT);
         })
     })
     
@@ -82,10 +83,13 @@
         for (i = 0 ; i < btns.length ; i++) {
         btns.addEventListener("click", setStorage())}};
 
+    var infoArr = []
     function setStorage(taskInput, btnDT) {
         console.log(taskInput)
         var valueToStore = {time: btnDT, value: taskInput}
-        localStorage.setItem("userInput", JSON.stringify(valueToStore));
+        
+        infoArr.push(valueToStore)
+        localStorage.setItem("userInput", JSON.stringify(infoArr));
         displayInput(taskInput)
         //get whats currently in local storage
         //which will be an array
@@ -93,12 +97,62 @@
         //save said array to local storage
     }
 
-    function displayInput(i) {
+    function displayInput() {
         var displayTask = JSON.parse(localStorage.getItem("userInput"));
-        i = displayTask;
+        
+        inputs.forEach(function(input){
+          var boxDT = input.getAttribute("data-time")
+
+          // past
+          // now
+          // future
+
+          displayTask.forEach(function(task){
+              if (task.time === boxDT) {
+                console.log("match: ", task);
+                input.value = task.value;
+              }
+          })
+        });
+
+        //console.log(displayTask)
         //get previous array from local storage
-        for (i = 0; i < inputs.length; i++) {
-            inputs[i].append(displayTask);
-        }
+        // for (i = 0; i < displayTask.length; i++) {
+        //     inputs.forEach(function(input) {
+        //         input.addEventListener("onload", function(e) {
+        //             var boxDT = e.target.getAttribute("data-time");
+        //             var selectors = document.querySelectorAll(`[data-time="${boxDT}"]`);
+        //             var taskOutput = selectors[0].value;
+
+        //             if (taskOutput === displayTask[i]) {
+        //                 selectors.append(displayTask.value);
+        //             }
+        //         })
+        //     })
+        // }
         //loop through values to display in cooresponding boxes
 }
+
+
+
+
+// When the page loads
+displayInput()
+// Get from local storage
+/* [{time: "hr1", value: "someValue"},{time: "hr2", value: 'somcevlaue'}] */
+
+// go thru the inputs (forEach, for loop etc)
+// check the input's data-time to time in all of the objects (anouther for loop)
+    // round 1: is data-time === to localStorageValue[0]
+    // round 2: is data-time === to localStorageValue[1]
+// IF THEY ARE EQUAL:
+    // display the value to the box
+
+
+
+
+
+
+
+
+
