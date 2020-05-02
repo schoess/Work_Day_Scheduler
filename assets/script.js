@@ -5,69 +5,16 @@
 
     var btns = document.querySelectorAll(".btn");
     var inputs = document.querySelectorAll(".box");
-    //display user input
-    //display info from local storage
-    //option to clear input by user
-    //store function to display user input from local storage for use in multiple circumstances
-    //Moment.JS
+// On page load, displays live date
     document.addEventListener('DOMContentLoaded', function() {
     function liveDate() {
         let dateDisplay = moment().format('LL');
         document.getElementById("liveDate").append(dateDisplay);
-
-        var now = moment();
-        var time = now.hour();
-        if (time > 17 || time < 9) {
-            inputs.forEach(function(input) {
-                input.setAttribute("id", "grayBox")
-            });
-        } else if (time = 9) {
-            inputs[0].setAttribute("id", "greenBox");
-            inputs.slice(1).setAttribute("id", "redBox");
-        } else if (time = 10) {
-            inputs[0].setAttribute("id", "grayBox")
-            inputs[1].setAttribute("id", "greenBox")
-            inputs.slice(2).setAttribute("id", "redBox")
-        } else if (time = 11) {
-            inputs.slice(-1, -7).setAttribute("id", "grayBox")
-            inputs[2].setAttribute("id", "greenBox")
-            inputs.slice(2).setAttribute("id", "redBox")
-        } else if (time = 12) {
-            inputs.slice(-2, -6).setAttribute("id", "grayBox")
-            inputs[3].setAttribute("id", "greenBox")
-            inputs.slice(3).setAttribute("id", "redBox")
-        } else if (time = 13) {
-            inputs.slice(-3, -5).setAttribute("id", "grayBox")
-            inputs[4].setAttribute("id", "greenBox")
-            inputs.slice(4).setAttribute("id", "redBox")
-        } else if (time = 14) {
-            inputs.slice(-4, -4).setAttribute("id", "grayBox")
-            inputs[5].setAttribute("id", "greenBox")
-            inputs.slice(5).setAttribute("id", "redBox")
-        } else if (time = 15) {
-            inputs.slice(-5, -3).setAttribute("id", "grayBox")
-            inputs[6].setAttribute("id", "greenBox")
-            inputs.slice(6).setAttribute("id", "redBox")
-        } else if (time = 16) {
-            inputs.slice(-6, -2).setAttribute("id", "grayBox")
-            inputs[7].setAttribute("id", "greenBox")
-            inputs.slice(7).setAttribute("id", "redBox")
-        } else if (time = 17) {
-            inputs.slice(-7, -1).setAttribute("id", "grayBox")
-            inputs[8].setAttribute("id", "greenBox")
-            inputs.slice(8).setAttribute("id", "redBox")
-        } else if (time < 17 || time > 9) {
-            inputs.forEach(function(input) {
-                input.setAttribute("id", "redBox");
-            })
-        }
-
     }
     liveDate();
     }, false);
-    //for each input do this
-    //inputs.forEach(setInput);
-
+);
+//for each button sets value of user input to local storage
     btns.forEach(function(btn){
         btn.addEventListener("click", function(e) {
             var btnDT = e.target.getAttribute("data-time");
@@ -78,7 +25,7 @@
             setStorage(taskInput, btnDT);
         })
     })
-    
+    //on button click
     function setInput() {
         for (i = 0 ; i < btns.length ; i++) {
         btns.addEventListener("click", setStorage())}};
@@ -87,25 +34,29 @@
     function setStorage(taskInput, btnDT) {
         console.log(taskInput)
         var valueToStore = {time: btnDT, value: taskInput}
-        
+//pushes value stored into userInput array        
         infoArr.push(valueToStore)
         localStorage.setItem("userInput", JSON.stringify(infoArr));
         displayInput(taskInput)
-        //get whats currently in local storage
-        //which will be an array
-        //localStorage should be an array of valuetoStore
-        //save said array to local storage
     }
-
+//displays whats in local storage to the page
     function displayInput() {
         var displayTask = JSON.parse(localStorage.getItem("userInput"));
-        
+//I've tried for hours to get this bit of code below to work and I have been unable to. It keeps telling me that moment is undefined, so I commented it out and everything else works just fine.        
         inputs.forEach(function(input){
-          var boxDT = input.getAttribute("data-time")
+            var boxDT = input.getAttribute("data-time");
+            var momentTime = input.getAttribute("momentTime");
+        //     var moment = require('moment.js');
+        //     var now = moment();
+        //     var currentTime = now.hour();
 
-          // past
-          // now
-          // future
+        //   if (momentTime < currentTime) {
+        //     input.setAttribute("id", "grayBox")
+        //   } else if (momentTime === currentTime) {
+        //     input.setAttribute("id", "greenBox")
+        //   } else if (momentTime > currentTime) {
+        //     input.setAttribute("id", "redBox");
+        //   }
 
           displayTask.forEach(function(task){
               if (task.time === boxDT) {
@@ -115,38 +66,9 @@
           })
         });
 
-        //console.log(displayTask)
-        //get previous array from local storage
-        // for (i = 0; i < displayTask.length; i++) {
-        //     inputs.forEach(function(input) {
-        //         input.addEventListener("onload", function(e) {
-        //             var boxDT = e.target.getAttribute("data-time");
-        //             var selectors = document.querySelectorAll(`[data-time="${boxDT}"]`);
-        //             var taskOutput = selectors[0].value;
-
-        //             if (taskOutput === displayTask[i]) {
-        //                 selectors.append(displayTask.value);
-        //             }
-        //         })
-        //     })
-        // }
-        //loop through values to display in cooresponding boxes
 }
-
-
-
-
-// When the page loads
 displayInput()
-// Get from local storage
-/* [{time: "hr1", value: "someValue"},{time: "hr2", value: 'somcevlaue'}] */
 
-// go thru the inputs (forEach, for loop etc)
-// check the input's data-time to time in all of the objects (anouther for loop)
-    // round 1: is data-time === to localStorageValue[0]
-    // round 2: is data-time === to localStorageValue[1]
-// IF THEY ARE EQUAL:
-    // display the value to the box
 
 
 
