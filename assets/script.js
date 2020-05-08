@@ -13,7 +13,6 @@
     }
     liveDate();
     }, false);
-);
 //for each button sets value of user input to local storage
     btns.forEach(function(btn){
         btn.addEventListener("click", function(e) {
