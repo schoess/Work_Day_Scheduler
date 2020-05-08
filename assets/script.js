@@ -45,17 +45,16 @@
         inputs.forEach(function(input){
             var boxDT = input.getAttribute("data-time");
             var momentTime = input.getAttribute("momentTime");
-        //     var moment = require('moment.js');
-        //     var now = moment();
-        //     var currentTime = now.hour();
+            var now = moment();
+            var currentTime = now.hour();
 
-        //   if (momentTime < currentTime) {
-        //     input.setAttribute("id", "grayBox")
-        //   } else if (momentTime === currentTime) {
-        //     input.setAttribute("id", "greenBox")
-        //   } else if (momentTime > currentTime) {
-        //     input.setAttribute("id", "redBox");
-        //   }
+          if (momentTime < currentTime) {
+            input.setAttribute("id", "grayBox")
+          } else if (momentTime == currentTime) {
+            input.setAttribute("id", "greenBox")
+          } else if (momentTime > currentTime) {
+            input.setAttribute("id", "redBox");
+          };
 
           displayTask.forEach(function(task){
               if (task.time === boxDT) {
