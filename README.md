@@ -8,3 +8,5 @@ Welcome to your new day planner!
 2. Click the green check icon to save it
 
 3. It will remain there until you put a new task in!
+
+Link to deployed application: https://schoess.github.io/Work_Day_Scheduler/
